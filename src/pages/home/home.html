@@ -1,14 +1,39 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      Ionic Blank
+      Profile
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <form [formGroup]="profileForm" (ngSubmit)="save(profileForm.value)">
+    <ion-list margin-bottom padding-bottom>
+      <section text-center class="profile-picture" (click)="selectImage()">
+        <span class="profile-picture__icon">
+          <ion-icon name="md-create"></ion-icon>
+        </span>
+        <img *ngIf="image" [src]="image" class="profile-picture__image" alt="Profile Picture">
+        <img *ngIf="!image" [src]="'assets/imgs/user-placeholder.svg'" class="profile-picture__image" alt="Profile Picture">
+      </section>
+
+      <ion-item>
+        <ion-label>First name</ion-label>
+        <ion-input type="text" formControlName="firstName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Last name</ion-label>
+        <ion-input type="text" formControlName="lastName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input type="text" formControlName="password"></ion-input>
+      </ion-item>
+      <button ion-button block type="submit">Save</button>
+    </ion-list>
+  </form>
 </ion-content>
